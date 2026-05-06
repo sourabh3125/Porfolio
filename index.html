@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Java Backend Developer specializing in Spring Boot, Microservices, REST APIs, and scalable backend systems." />
+  <meta name="keywords" content="Java, Spring Boot, Backend Developer, Microservices, REST APIs, Spring Security, JWT, SMPP" />
+  <title>Sourabh Kumar Tripathi | Java Backend Developer | Spring Boot Specialist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0f1e;
+      --bg2: #0d1426;
+      --bg3: #111827;
+      --card: #131d35;
+      --card2: #1a2540;
+      --border: #1e2d4a;
+      --accent: #00d4ff;
+      --accent2: #7c3aed;
+      --accent3: #10b981;
+      --text: #e2e8f0;
+      --text2: #94a3b8;
+      --text3: #64748b;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Sora', sans-serif;
+      --glow: 0 0 30px rgba(0, 212, 255, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,15,30,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.1rem;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text2);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .theme-toggle {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,212,255,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124,58,237,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.25);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInDown 0.6s ease both;
+    }
+
+    .hero-badge::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.6s 0.1s ease both;
+    }
+
+    h1 .accent { color: var(--accent); }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text2);
+      font-weight: 300;
+      margin-bottom: 0.75rem;
+      animation: fadeInUp 0.6s 0.2s ease both;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--text3);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      animation: fadeInUp 0.6s 0.3s ease both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.6s 0.4s ease both;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0f1e;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      box-shadow: 0 0 20px rgba(0,212,255,0.3);
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0,212,255,0.5); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      margin-top: 4rem;
+      animation: fadeInUp 0.6s 0.5s ease both;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      font-family: var(--mono);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+    .section-header { text-align: center; margin-bottom: 4rem; }
+
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      color: var(--text2);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ── ABOUT ── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text2);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .about-text strong { color: var(--text); }
+
+    .about-pillars {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .pillar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .pillar:hover { border-color: var(--accent); box-shadow: var(--glow); }
+
+    .pillar-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .pillar p { font-size: 0.82rem; color: var(--text2); margin: 0; }
+
+    /* ── SKILLS ── */
+    #skills { background: none; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: all 0.25s;
+    }
+
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--glow); }
+
+    .skill-card-title {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+    .tag {
+      background: rgba(0,212,255,0.07);
+      border: 1px solid rgba(0,212,255,0.15);
+      color: var(--text);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      transition: all 0.2s;
+    }
+
+    .tag:hover { background: rgba(0,212,255,0.15); border-color: var(--accent); }
+
+    /* ── PROJECTS ── */
+    .projects-grid { display: grid; gap: 1.5rem; }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .project-card:hover { border-color: rgba(0,212,255,0.4); box-shadow: var(--glow); transform: translateY(-3px); }
+    .project-card:hover::before { opacity: 1; }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      gap: 1rem;
+    }
+
+    .project-name { font-size: 1.2rem; font-weight: 700; }
+
+    .project-badge {
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.3);
+      color: var(--accent3);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-family: var(--mono);
+      white-space: nowrap;
+    }
+
+    .project-meta {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text3);
+      margin-bottom: 1rem;
+    }
+
+    .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+
+    .tech-tag {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-family: var(--mono);
+    }
+
+    .project-desc { color: var(--text2); font-size: 0.9rem; margin-bottom: 1.25rem; }
+
+    .project-points { list-style: none; display: grid; gap: 0.5rem; margin-bottom: 1.25rem; }
+
+    .project-points li {
+      font-size: 0.85rem;
+      color: var(--text2);
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .project-points li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 3px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      border: 1px solid rgba(0,212,255,0.3);
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .project-link:hover { background: rgba(0,212,255,0.08); }
+
+    /* ── EXPERIENCE ── */
+    .timeline { position: relative; padding-left: 2rem; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: all 0.25s;
+    }
+
+    .timeline-item:hover { border-color: rgba(0,212,255,0.4); box-shadow: var(--glow); }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.5rem;
+      top: 1.5rem;
+      width: 14px; height: 14px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 12px rgba(0,212,255,0.5);
+    }
+
+    .job-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+
+    .job-title { font-size: 1.1rem; font-weight: 700; }
+
+    .job-badge {
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.25);
+      color: var(--accent);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-family: var(--mono);
+    }
+
+    .job-company { color: var(--text2); font-size: 0.9rem; margin-bottom: 0.25rem; }
+
+    .job-period {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text3);
+      margin-bottom: 1.25rem;
+    }
+
+    .job-points { list-style: none; display: grid; gap: 0.6rem; }
+
+    .job-points li {
+      font-size: 0.85rem;
+      color: var(--text2);
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .job-points li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 3px;
+    }
+
+    .job-points strong { color: var(--text); }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: all 0.25s;
+    }
+
+    .edu-card:hover { border-color: rgba(0,212,255,0.4); box-shadow: var(--glow); }
+
+    .edu-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+
+    .edu-degree { font-size: 1.1rem; font-weight: 700; }
+
+    .edu-gpa {
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.3);
+      color: var(--accent3);
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+    }
+
+    .edu-school { color: var(--text2); margin-bottom: 0.25rem; }
+    .edu-period { font-family: var(--mono); font-size: 0.75rem; color: var(--text3); margin-bottom: 1rem; }
+    .edu-note { font-size: 0.85rem; color: var(--text2); }
+
+    /* ── CERTS ── */
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+
+    .cert-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      transition: all 0.25s;
+    }
+
+    .cert-card:hover { border-color: var(--accent); box-shadow: var(--glow); }
+
+    .cert-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+
+    .cert-issuer { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); }
+
+    .cert-date { font-size: 0.75rem; color: var(--text3); margin-top: 0.25rem; }
+
+    /* ── CONTACT ── */
+    #contact { text-align: center; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 3rem 0;
+    }
+
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.25s;
+      display: block;
+    }
+
+    .contact-card:hover { border-color: var(--accent); box-shadow: var(--glow); transform: translateY(-3px); }
+
+    .contact-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+    .contact-label { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem; }
+
+    .contact-value { font-size: 0.85rem; color: var(--text2); word-break: break-all; }
+
+    .social-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+
+    .social-link {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .social-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text3);
+      font-size: 0.8rem;
+      font-family: var(--mono);
+    }
+
+    footer span { color: var(--accent); }
+
+    /* ── BACK TO TOP ── */
+    .back-top {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.2s;
+      z-index: 50;
+    }
+
+    .back-top:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      #about .about-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      .timeline { padding-left: 1.5rem; }
+      .timeline-dot { left: -2rem; }
+    }
+
+    /* ── DIVIDER ── */
+    .full-bleed {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      padding: 6rem 2rem;
+    }
+
+    .full-bleed-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 auto;
+      max-width: 1100px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">&lt;SKT /&gt;</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" onclick="document.body.classList.toggle('light')">🌓</button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Available for Opportunities</div>
+      <h1>Sourabh Kumar<br /><span class="accent">Tripathi</span></h1>
+      <p class="hero-subtitle">Backend Developer · Spring Boot Specialist · Microservices Architect</p>
+      <p class="hero-desc">
+        Building secure, scalable backend systems that power real-world applications.
+        Specialized in Java, Spring Boot, REST APIs, and microservices architecture.
+      </p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-secondary">Get In Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Production Projects</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1.6</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">REST APIs Built</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">25+</div>
+          <div class="stat-label">Technical Skills</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header">
+      <span class="section-tag">// about me</span>
+      <h2>Professional Summary</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          <strong>Backend-focused Software Engineer</strong> with 1.6 years of experience at High Tech Infosystems,
+          designing and delivering scalable RESTful microservices and database-driven systems using
+          <strong>Spring Boot and Java 17</strong>.
+        </p>
+        <p>
+          Solid command of layered architecture, JPA/Hibernate, MySQL optimization, and production-grade
+          exception handling and logging. Experienced in building <strong>multi-channel messaging platforms</strong>
+          (SMPP, SMS, WhatsApp, Instagram, Telegram, Email).
+        </p>
+        <p>
+          Built full-featured e-commerce backends with <strong>JWT-secured APIs</strong> — directly aligned with
+          the reliability and transaction-integrity standards expected in high-volume fintech and payment infrastructure.
+        </p>
+        <p>Strong foundation in <strong>Data Structures, OOP, SOLID Principles, and System Design</strong>.
+          Passionate about writing clean, maintainable code and contributing to meaningful backend problems.
+        </p>
+      </div>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-title">⚡ Secure Backend Systems</div>
+          <p>JWT authentication, Spring Security, RBAC, token validation, secure API design</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">🏗️ Microservices Architecture</div>
+          <p>Spring Boot microservices, modular design, independent deployable backend services</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">🔌 REST API Design</div>
+          <p>Scalable REST APIs, CRUD operations, validation, structured error handling, Swagger docs</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">🗄️ Database Optimization</div>
+          <p>MySQL, Hibernate ORM, query optimization, indexing, efficient data retrieval, transaction management</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header">
+      <span class="section-tag">// technical skills</span>
+      <h2>What I Work With</h2>
+      <p class="section-sub">A curated stack of technologies I use to build production-grade backend systems.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-title">Languages</div>
+        <div class="tags">
+          <span class="tag">Java 8</span>
+          <span class="tag">Java 17</span>
+          <span class="tag">Core Java</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Frameworks & Libraries</div>
+        <div class="tags">
+          <span class="tag">Spring Boot</span>
+          <span class="tag">Spring MVC</span>
+          <span class="tag">Spring Security</span>
+          <span class="tag">Spring Data JPA</span>
+          <span class="tag">Hibernate</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Backend & Architecture</div>
+        <div class="tags">
+          <span class="tag">REST APIs</span>
+          <span class="tag">Microservices</span>
+          <span class="tag">Layered Architecture</span>
+          <span class="tag">DTO Pattern</span>
+          <span class="tag">JDBC</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Security & Authentication</div>
+        <div class="tags">
+          <span class="tag">JWT</span>
+          <span class="tag">OAuth2</span>
+          <span class="tag">RBAC</span>
+          <span class="tag">Google OAuth</span>
+          <span class="tag">Secure Auth</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Databases</div>
+        <div class="tags">
+          <span class="tag">MySQL</span>
+          <span class="tag">JDBC</span>
+          <span class="tag">Indexing</span>
+          <span class="tag">Query Optimization</span>
+          <span class="tag">Transaction Management</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">API & Documentation</div>
+        <div class="tags">
+          <span class="tag">Swagger / OpenAPI</span>
+          <span class="tag">API Versioning</span>
+          <span class="tag">Postman</span>
+          <span class="tag">SMPP</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Core Concepts</div>
+        <div class="tags">
+          <span class="tag">OOP</span>
+          <span class="tag">SOLID Principles</span>
+          <span class="tag">Design Patterns</span>
+          <span class="tag">Exception Handling</span>
+          <span class="tag">Multithreading</span>
+          <span class="tag">Collections</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">DevOps & Tools</div>
+        <div class="tags">
+          <span class="tag">Docker</span>
+          <span class="tag">Git & GitHub</span>
+          <span class="tag">Maven</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">SLF4J</span>
+          <span class="tag">Logback</span>
+          <span class="tag">IntelliJ IDEA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <span class="section-tag">// featured projects</span>
+      <h2>What I've Built</h2>
+      <p class="section-sub">Real production-grade backend systems demonstrating expertise in APIs, security, and scalable architecture.</p>
+    </div>
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">Electronic Store — E-Commerce Backend</div>
+          <div class="project-badge">Full Stack Backend</div>
+        </div>
+        <div class="project-meta">Spring Boot · Core Java · Spring Security · JWT · MySQL · Docker</div>
+        <div class="project-tech">
+          <span class="tech-tag">Spring Boot</span>
+          <span class="tech-tag">Java</span>
+          <span class="tech-tag">Spring Security</span>
+          <span class="tech-tag">JWT</span>
+          <span class="tech-tag">OAuth2</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">Swagger</span>
+        </div>
+        <p class="project-desc">
+          <strong>A fully-featured e-commerce backend architected from scratch</strong>, implementing modules for
+          User Management, Product Catalogue, Category Management, Shopping Cart, and Order Processing — each following
+          a clean Controller–Service–Repository layered pattern.
+        </p>
+        <ul class="project-points">
+          <li><strong>Secure Auth:</strong> Spring Security with JWT-based authentication and RBAC for ADMIN and USER roles</li>
+          <li><strong>Social Login:</strong> Google OAuth2 integration, file upload/download APIs for product images</li>
+          <li><strong>Paginated Endpoints:</strong> Sortable, paginated list APIs across all major resources</li>
+          <li><strong>Containerized:</strong> Docker & Docker Compose for one-command local and production deployment</li>
+          <li><strong>Documented:</strong> Full Swagger (OpenAPI) docs, ModelMapper for DTO–Entity mapping, Bean Validation</li>
+        </ul>
+        <a href="https://github.com/sourabh2531" target="_blank" class="project-link">
+          ↗ View Code
+        </a>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">SMPP Multi-Channel Messaging Platform</div>
+          <div class="project-badge">Production System</div>
+        </div>
+        <div class="project-meta">Spring Boot · Java 17 · SMPP · MySQL · REST APIs</div>
+        <div class="project-tech">
+          <span class="tech-tag">Spring Boot</span>
+          <span class="tech-tag">Java 17</span>
+          <span class="tech-tag">SMPP Protocol</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">REST APIs</span>
+          <span class="tech-tag">SLF4J</span>
+          <span class="tech-tag">Logback</span>
+        </div>
+        <p class="project-desc">
+          <strong>Production-grade multi-channel messaging platform</strong> supporting SMS, WhatsApp, Instagram,
+          Telegram, and Email using the SMPP protocol — enabling high-throughput message delivery at scale.
+        </p>
+        <ul class="project-points">
+          <li><strong>Multi-Channel:</strong> REST APIs for SMS, WhatsApp, Instagram, Telegram, and Email routing</li>
+          <li><strong>Analytics APIs:</strong> Delivery Summary Reports with indexed lookups and SQL aggregation</li>
+          <li><strong>Performance:</strong> ~25% SQL query performance improvement via schema optimization and indexing</li>
+          <li><strong>Observability:</strong> Centralized exception handling and SLF4J/Logback structured logging</li>
+          <li><strong>SOLID Design:</strong> Controller–Service–Repository pattern across all messaging modules</li>
+        </ul>
+        <a href="https://github.com/sourabh2531" target="_blank" class="project-link">
+          ↗ View Code
+        </a>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">Realtime Whiteboard Application</div>
+          <div class="project-badge">Real-Time App</div>
+        </div>
+        <div class="project-meta">Node.js · Socket.io · HTML · CSS · JavaScript</div>
+        <div class="project-tech">
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Socket.io</span>
+          <span class="tech-tag">HTML</span>
+          <span class="tech-tag">CSS</span>
+          <span class="tech-tag">JavaScript</span>
+        </div>
+        <p class="project-desc">
+          <strong>Real-time collaborative drawing platform</strong> using Socket.io for low-latency bidirectional
+          communication — demonstrating event-driven architecture applicable to live payment status and transaction notifications.
+        </p>
+        <ul class="project-points">
+          <li><strong>Real-Time Sync:</strong> Socket.io bidirectional communication for multi-user collaboration</li>
+          <li><strong>Features:</strong> Freehand drawing, undo/redo, and image export capabilities</li>
+          <li><strong>Architecture:</strong> Event-driven design applicable to live payment status update systems</li>
+        </ul>
+        <a href="https://github.com/sourabh2531" target="_blank" class="project-link">
+          ↗ View Code
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header">
+      <span class="section-tag">// professional experience</span>
+      <h2>Work History</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="job-header">
+          <div class="job-title">Junior Java Backend Developer</div>
+          <div class="job-badge">CURRENT</div>
+        </div>
+        <div class="job-company">High Tech Infosystems, Jabalpur</div>
+        <div class="job-period">Oct 2024 – Present · Full-Time · ~1.6 Years</div>
+        <ul class="job-points">
+          <li><strong>Backend Architecture:</strong> Design and maintain 10+ production RESTful microservices using Spring Boot and Java 17, enabling modular, independently deployable backend architecture.</li>
+          <li><strong>Messaging Platform:</strong> Engineered backend services for a production-grade multi-channel messaging platform supporting SMS, WhatsApp, Instagram, Telegram, and Email using the SMPP protocol.</li>
+          <li><strong>Database Optimization:</strong> Improved SQL query performance by ~25% through schema optimization, strategic indexing, and efficient transaction handling.</li>
+          <li><strong>API Documentation:</strong> Integrated Swagger (OpenAPI) documentation for all backend APIs, streamlining frontend-backend collaboration.</li>
+          <li><strong>Secure Design:</strong> Enforced input sanitization, error masking, and layered response contracts — consistent with financial-grade backend standards.</li>
+          <li><strong>Agile Collaboration:</strong> Active participant in Agile sprints, peer code reviews, and Git-based version control workflows.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="job-header">
+          <div class="job-title">Java Backend Intern</div>
+        </div>
+        <div class="job-company">High Tech Infosystems, Jabalpur</div>
+        <div class="job-period">Jul 2024 – Sep 2024 · Internship · 3 Months</div>
+        <ul class="job-points">
+          <li><strong>API Development:</strong> Built and tested Spring Boot REST APIs integrated with MySQL, implementing full CRUD operations across multiple service modules.</li>
+          <li><strong>Architecture:</strong> Contributed to service-layer logic and repository pattern implementations, gaining hands-on exposure to production-standard Java backend development.</li>
+          <li><strong>Collaboration:</strong> Developed practical fluency in API versioning, deployment workflows, and Git-based team collaboration from day one.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-header">
+      <span class="section-tag">// education</span>
+      <h2>Academic Background</h2>
+    </div>
+    <div class="edu-card">
+      <div class="edu-header">
+        <div class="edu-degree">B.Tech — Computer Science & Data Science</div>
+        <div class="edu-gpa">CGPA: 7.5 / 10</div>
+      </div>
+      <div class="edu-school">Gyan Ganga Institute of Technology and Sciences, Jabalpur, India</div>
+      <div class="edu-period">Nov 2020 – Jul 2024</div>
+      <div class="edu-note">
+        Developed a strong foundation in Data Structures, Algorithms, OOP, and software engineering practices.
+        Participated in technical events and built practical fluency in Java backend development throughout the program.
+      </div>
+    </div>
+
+    <br /><br />
+
+    <div class="section-header">
+      <span class="section-tag">// certifications</span>
+      <h2>Credentials</h2>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-title">Java Spring Boot</div>
+        <div class="cert-issuer">Udemy</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-title">MySQL Certification</div>
+        <div class="cert-issuer">Oracle Academy</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-title">Programming Essentials in C and C++ (CLA)</div>
+        <div class="cert-issuer">Cisco NetAcad</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header">
+      <span class="section-tag">// get in touch</span>
+      <h2>Let's Connect</h2>
+      <p class="section-sub">I'm actively seeking Backend Developer opportunities. Let's build something together!</p>
+    </div>
+    <div class="contact-grid">
+      <a href="tel:+918269590444" class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">+91 82695 90444</div>
+      </a>
+      <a href="mailto:sourabh.tripathi.3125@gmail.com" class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">sourabh.tripathi.3125@gmail.com</div>
+      </a>
+      <a href="https://github.com/sourabh2531" target="_blank" class="contact-card">
+        <div class="contact-icon">🐙</div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">github.com/sourabh2531</div>
+      </a>
+      <a href="#" class="contact-card">
+        <div class="contact-icon">💼</div>
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Jabalpur, Madhya Pradesh, India</div>
+      </a>
+    </div>
+    <div class="social-links">
+      <a href="https://github.com/sourabh2531" target="_blank" class="social-link">🐙 GitHub</a>
+      <a href="mailto:sourabh.tripathi.3125@gmail.com" class="social-link">✉️ Email</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>Sourabh Kumar Tripathi</span> | Java Backend Developer</p>
+    <p style="margin-top:0.5rem">Building secure, scalable backend systems · Let's build something amazing together</p>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <a href="#hero" class="back-top" title="Back to top">↑</a>
+
+  <script>
+    // Smooth active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 80) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
